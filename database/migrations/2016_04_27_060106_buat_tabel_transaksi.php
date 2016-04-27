@@ -16,7 +16,6 @@ class BuatTabelTransaksi extends Migration
             $table->increments('id');
             $table->date('tanggal');
             $table->integer('total');
-            $table->integer('users_id');
             $table->integer('pelanggan_id');
         });
     }

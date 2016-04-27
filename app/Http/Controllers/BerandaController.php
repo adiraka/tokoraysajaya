@@ -8,6 +8,11 @@ use BookApp\Http\Requests;
 
 class BerandaController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
     	return view('admin.beranda')->with('title', 'Dashboard');

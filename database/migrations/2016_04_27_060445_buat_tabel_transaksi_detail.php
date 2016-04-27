@@ -17,7 +17,7 @@ class BuatTabelTransaksiDetail extends Migration
             $table->integer('transaksi_id');
             $table->integer('buku_id');
             $table->integer('jumlah');
-            $table->integer('total');
+            $table->integer('subtotal');
         });
     }
 
