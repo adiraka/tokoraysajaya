@@ -20,6 +20,10 @@
         </li>
         <li class="bold"><a href="{{ route('beranda') }}" class="waves-effect waves-cyan"><i class="mdi mdi-view-dashboard"></i> Dashboard</a>
         </li>
+        <li class="bold"><a href="" class="waves-effect waves-cyan"><i class="mdi mdi-book-multiple-variant"></i> Data Buku</a>
+        </li>
+        <li class="bold"><a href="" class="waves-effect waves-cyan"><i class="mdi mdi-shopping"></i> Data Transaksi</a>
+        </li>
         <li class="bold"><a href="{{ url('logout') }}" class="waves-effect waves-cyan"><i class="mdi mdi-logout-variant"></i> Logout</a>
         </li>
     </ul>
