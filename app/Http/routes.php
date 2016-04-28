@@ -10,11 +10,15 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['guest'],
 	]);
 
+	// Route Beranda
+
 	Route::get('/beranda', [
 		'uses' => '\BookApp\Http\Controllers\BerandaController@index',
 		'as' => 'beranda',
 		'middleware' => ['auth'],
 	]);
+
+	// Route Buku
 
 	Route::get('/buku', [
 		'uses' => '\BookApp\Http\Controllers\BukuController@index',
@@ -25,6 +29,20 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/databuku', [
 		'uses' => '\BookApp\Http\Controllers\BukuController@getDataBuku',
 		'as' => 'databuku',
+		'middleware' => ['auth'],
+	]);
+
+	// Route Kategori
+
+	Route::get('/kategori', [
+		'uses' => '\BookApp\Http\Controllers\KategoriController@index',
+		'as' => 'kategori',
+		'middleware' => ['auth'],
+	]);
+
+	Route::get('/datakategori', [
+		'uses' => '\BookApp\Http\Controllers\KategoriController@getDataKategori',
+		'as' => 'datakategori',
 		'middleware' => ['auth'],
 	]);
 

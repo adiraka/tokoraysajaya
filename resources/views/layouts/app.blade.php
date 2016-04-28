@@ -11,8 +11,8 @@
     
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/materialize.css') }}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/materialdesignicons.css') }}" media="screen,projection">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/datatables.min.css') }}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/datatables.css') }}" media="screen,projection">
 
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
 
@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col s12 m12 l12">
                                 <h5 class="breadcrumbs-title">{{ $title }}</h5>
-                                <ol class="breadcrumb"></ol>
+                                <ol class=""></ol>
                             </div>
                         </div>
                     </div>
@@ -43,12 +43,15 @@
             </section>          
         </div>
     </div>
-    @stack('scripts');
+    
     @include('layouts.partials.footer')
     
     <script src="{{ URL::asset('js/materialize.js') }}"></script>
     <script src="{{ URL::asset('js/pace.min.js') }}"></script>
-    <script src="{{ URL::asset('js/datatables.min.js') }}"></script>
+    <script src="{{ URL::asset('js/app.js') }}"></script>
+    <script src="{{ URL::asset('js/datatables.js') }}"></script>
+
+    @stack('scripts')
 
 </body>
 </html>

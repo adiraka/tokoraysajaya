@@ -5,7 +5,7 @@
 	<table class="display" id="tabel-buku">
 		<thead>
 			<tr>
-				<th>ID</th>
+				<th>Kode</th>
 				<th>Judul</th>
 				<th>Pengarang</th>
 				<th>Kategori</th>
@@ -30,7 +30,7 @@
 				autoWidth: false,
 				ajax: '{!! route('databuku') !!}',
 				columns: [
-					{ data: 'id', name: 'id' },
+					{ data: 'kode_buku', name: 'kode_buku' },
 					{ data: 'judul', name: 'judul' },
 					{ data: 'pengarang', name: 'pengarang' },
 					{ data: 'kategori_id', name: 'kategori_id' },
