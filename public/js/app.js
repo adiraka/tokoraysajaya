@@ -6,4 +6,6 @@ $(function() {
 
     $('.modal-trigger').leanModal();
 
+    $('.dropdown-button').dropdown();
+
 });
