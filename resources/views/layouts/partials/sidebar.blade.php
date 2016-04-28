@@ -20,7 +20,7 @@
         </li>
         <li class="bold"><a href="{{ route('beranda') }}" class="waves-effect waves-cyan"><i class="mdi mdi-view-dashboard"></i> Dashboard</a>
         </li>
-        <li class="bold"><a href="" class="waves-effect waves-cyan"><i class="mdi mdi-book-multiple-variant"></i> Data Buku</a>
+        <li class="bold"><a href="{{ route('buku') }}" class="waves-effect waves-cyan"><i class="mdi mdi-book-multiple-variant"></i> Data Buku</a>
         </li>
         <li class="bold"><a href="" class="waves-effect waves-cyan"><i class="mdi mdi-shopping"></i> Data Transaksi</a>
         </li>
