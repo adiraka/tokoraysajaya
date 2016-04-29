@@ -19,12 +19,12 @@ class KategoriController extends Controller
     {
     	$kategoris = Kategori::select(['id', 'nama'])->get();
     	return Datatables::of($kategoris)
-    		->addColumn('action', function ($kategori) {
-    				return '
-	    				<button type="button" class="green btn btn-detail go-modal" value="'.$kategori->id.'"><i class="mdi mdi-pencil-box"></i></button>&nbsp;
-	    				<button type="button" class="red btn btn-delete" value="'.$kategori->id.'"><i class="mdi mdi-delete"></i></button>
-    				';
-    			})
+    		// ->addColumn('action', function ($kategori) {
+    		// 		return '
+	    	// 			<button type="button" class="green btn btn-detail go-modal" value="'.$kategori->id.'"><i class="mdi mdi-pencil-box"></i></button>&nbsp;
+	    	// 			<button type="button" class="red btn btn-delete" value="'.$kategori->id.'"><i class="mdi mdi-delete"></i></button>
+    		// 		';
+    		// 	})
     		->make(true);
     }
 
@@ -32,6 +32,22 @@ class KategoriController extends Controller
     {
     	if ($request->ajax()) {
     		$kategori = Kategori::create($request->all());
+    		return response()->json($kategori);
+    	}
+    }
+
+    public function getDetailDataKategori(Request $request, $id)
+    {
+    	if ($request->ajax()) {
+    		$kategori = Kategori::find($id);
+    		return response()->json($kategori);
+    	}
+    }
+
+    public function deleteDataKategori(Request $request, $id)
+    {
+    	if ($request->ajax()) {
+    		$kategori = Kategori::destroy($id);
     		return response()->json($kategori);
     	}
     }

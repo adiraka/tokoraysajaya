@@ -7,7 +7,6 @@
 	<table class="display dt-responsive nowrap" cellspacing="0" width="100%" id="tabel-buku">
 		<thead>
 			<tr>
-				<th>ID Kategori</th>
 				<th>Nama Kategori</th>
 				<th>Aksi</th>
 			</tr>
@@ -22,8 +21,9 @@
 				<form class="col s12" id="frmKtgr" name="frmKtgr" novalidate="">
 					<div class="row">
 						<div class="input-field col s12">
-							<input id="nama" type="text" class="validate">
-							<label for="nama">Nama Kategori</label>
+							<i class="mdi mdi-tag-multiple prefix"></i>
+							<input placeholder="Nama Kategori" id="nama" type="text" class="validate">
+							<label for="nama"></label>
 						</div>
 					</div>
 				</form>
@@ -43,9 +43,42 @@
 @push('scripts')
 	
 	<script>
+
+		var url = "{!! url('kategoris') !!}";
+
+		function go_modal(id) {
+			$.get(url + '/' + id, function(data){
+				$('#frmKtgr').trigger('reset');
+				$('#id').val(data.id);
+				$('#nama').val(data.nama);
+				$('#btn-save').val("update");
+				$('#modalKategori').openModal();
+			});	
+		}
+
+		function go_hapus(id) {
+			var tabel = $('#tabel-buku').DataTable();
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+				}
+			})
+			$.ajax({
+				type: "DELETE",
+				url: url + '/' + id,
+				success: function() {
+					tabel.ajax.reload();
+					Materialize.toast('Data Berhasil Di Hapus.', 4000);
+				},
+				error: function() {
+					Materialize.toast('Telah Terjadi Kesalahan.', 4000);
+				}
+			});
+		}
+
 		$(document).ready(function() {
 
-			$('#tabel-buku').DataTable({
+			var tabel = $('#tabel-buku').DataTable({
 				processing: true,
 				serverside: true,
 				responsive: true,
@@ -53,17 +86,21 @@
 				lengthChange: false,
 				ajax: '{!! route('datakategori') !!}',
 				columns: [
-					{ data: 'id', name: 'id' },
 					{ data: 'nama', name: 'nama' },
-					{ data: 'action', name: 'action' },
+					{
+						data: null,
+						sortAble: false,
+						render: function (o) { return '<button type="button" onclick="go_modal('+ o.id +')" class="green btn btn-detail go-modal"><i class="mdi mdi-pencil-box"></i></button>&nbsp;<button type="button" onclick="go_hapus('+ o.id +')" class="red btn btn-delete"><i class="mdi mdi-delete"></i></button>'; }
+					}
 				],
 			});
 
 			var url = "{!! url('kategoris') !!}";
-
-			$('.go-modal').on("click", function(){
-				console.log('sukses');
-			});
+			
+			tabel.button( 0).action('click', function( e, dt, button, config ) {
+				console.log( 'Button '+this.text()+' activated' );
+				this.disable();
+			} );
 
 			$('#btn-add').click(function() {
 				$('#btn-save').val("add");

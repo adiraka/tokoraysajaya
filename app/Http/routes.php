@@ -51,4 +51,14 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['auth'],
 	]);
 
+	Route::get('/kategoris/{id}', [
+		'uses' => '\BookApp\Http\Controllers\KategoriController@getDetailDataKategori',
+		'middleware' => ['auth'],
+	]);
+
+	Route::delete('/kategoris/{id}', [
+		'uses' => '\BookApp\Http\Controllers\KategoriController@deleteDataKategori',
+		'middleware' => ['auth'],
+	]);
+
 });
