@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/materialize.css') }}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/materialdesignicons.css') }}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}" media="screen,projection">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/datatables.css') }}" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/datatables.min.css') }}" media="screen,projection">
 
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
 
@@ -49,8 +49,7 @@
     <script src="{{ URL::asset('js/materialize.js') }}"></script>
     <script src="{{ URL::asset('js/pace.min.js') }}"></script>
     <script src="{{ URL::asset('js/app.js') }}"></script>
-    <script src="{{ URL::asset('js/datatables.js') }}"></script>
-
+    <script src="{{ URL::asset('js/datatables.min.js') }}"></script>\
     @stack('scripts')
 
 </body>

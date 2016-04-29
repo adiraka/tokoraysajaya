@@ -4,14 +4,15 @@
 
 	<button id="btn-add" data-target="" class="cyan btn waves-effect waves-light"><i class="mdi mdi-library-plus"></i>&nbsp;Tambah Kategori</button>
 
-	<table class="display" id="tabel-buku">
+	<table class="display dt-responsive nowrap" cellspacing="0" width="100%" id="tabel-buku">
 		<thead>
 			<tr>
 				<th>ID Kategori</th>
 				<th>Nama Kategori</th>
-				<th></th>
+				<th>Aksi</th>
 			</tr>
 		</thead>
+		<tbody></tbody>
 	</table>
 
 	<div id="modalKategori" class="modal modal-fixed-footer">
@@ -44,7 +45,7 @@
 	<script>
 		$(document).ready(function() {
 
-			var tabel = $('#tabel-buku').DataTable({
+			$('#tabel-buku').DataTable({
 				processing: true,
 				serverside: true,
 				responsive: true,
@@ -54,15 +55,14 @@
 				columns: [
 					{ data: 'id', name: 'id' },
 					{ data: 'nama', name: 'nama' },
-					{ data: 'action', name: 'action', orderable: false, searchable: false }
+					{ data: 'action', name: 'action' },
 				],
 			});
 
 			var url = "{!! url('kategoris') !!}";
 
-			$('.bukak').click(function(){
-				var id = $(this).val();
-				$('#modalKategori').openModal();
+			$('.go-modal').on("click", function(){
+				console.log('sukses');
 			});
 
 			$('#btn-add').click(function() {

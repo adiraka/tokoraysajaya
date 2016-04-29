@@ -21,7 +21,7 @@ class KategoriController extends Controller
     	return Datatables::of($kategoris)
     		->addColumn('action', function ($kategori) {
     				return '
-	    				<button type="button" class="green btn btn-detail bukak" value="'.$kategori->id.'"><i class="mdi mdi-pencil-box"></i></button>&nbsp;
+	    				<button type="button" class="green btn btn-detail go-modal" value="'.$kategori->id.'"><i class="mdi mdi-pencil-box"></i></button>&nbsp;
 	    				<button type="button" class="red btn btn-delete" value="'.$kategori->id.'"><i class="mdi mdi-delete"></i></button>
     				';
     			})
