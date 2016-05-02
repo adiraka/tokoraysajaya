@@ -61,4 +61,9 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['auth'],
 	]);
 
+	Route::put('/kategoris/{id}', [
+		'uses' => '\BookApp\Http\Controllers\KategoriController@editDataKategori',
+		'middleware' => ['auth'],
+	]);
+
 });

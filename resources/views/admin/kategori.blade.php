@@ -122,11 +122,13 @@
 				}
 
 				var state = $('#btn-save').val();
+
 				var type = "POST";
+				var id = $('#id').val();
 				var my_url = url;
 
 				if(state == "update") {
-					type: "PUT";
+					type = "PUT";
 					my_url += '/' + id;
 				}
 

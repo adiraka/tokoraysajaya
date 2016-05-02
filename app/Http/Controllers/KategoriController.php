@@ -51,4 +51,14 @@ class KategoriController extends Controller
     		return response()->json($kategori);
     	}
     }
+
+    public function editDataKategori(Request $request, $id)
+    {
+    	if ($request->ajax()) {
+    		$kategori = Kategori::find($id);
+    		$kategori->nama = $request->nama;
+    		$kategori->save();
+    		return response()->json($kategori);
+    	}
+    }
 }

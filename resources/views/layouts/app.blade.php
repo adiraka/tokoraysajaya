@@ -44,15 +44,13 @@
         </div>
     </div>
     
-    @stack('scripts')
-
     @include('layouts.partials.footer')
     
     <script src="{{ URL::asset('js/materialize.js') }}"></script>
     <script src="{{ URL::asset('js/pace.min.js') }}"></script>
     <script src="{{ URL::asset('js/app.js') }}"></script>
-    <script src="{{ URL::asset('js/datatables.js') }}"></script>\
-    
+    <script src="{{ URL::asset('js/datatables.js') }}"></script>
+    @stack('scripts')
 
 </body>
 </html>

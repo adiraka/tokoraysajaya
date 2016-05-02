@@ -28,6 +28,7 @@
 				serverside: true,
 				responsive: true,
 				autoWidth: false,
+				lengthChange: false,
 				ajax: '{!! route('databuku') !!}',
 				columns: [
 					{ data: 'kode_buku', name: 'kode_buku' },
