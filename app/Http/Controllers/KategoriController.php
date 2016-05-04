@@ -18,19 +18,15 @@ class KategoriController extends Controller
     public function getDataKategori()
     {
     	$kategoris = Kategori::select(['id', 'nama'])->get();
-    	return Datatables::of($kategoris)
-    		// ->addColumn('action', function ($kategori) {
-    		// 		return '
-	    	// 			<button type="button" class="green btn btn-detail go-modal" value="'.$kategori->id.'"><i class="mdi mdi-pencil-box"></i></button>&nbsp;
-	    	// 			<button type="button" class="red btn btn-delete" value="'.$kategori->id.'"><i class="mdi mdi-delete"></i></button>
-    		// 		';
-    		// 	})
-    		->make(true);
+    	return Datatables::of($kategoris)->make(true);
     }
 
     public function addDataKategori(Request $request)
     {
     	if ($request->ajax()) {
+    		$this->validate($request, [
+    			'nama' => 'required|unique:tb_kategori',
+    		]);
     		$kategori = Kategori::create($request->all());
     		return response()->json($kategori);
     	}
@@ -59,6 +55,25 @@ class KategoriController extends Controller
     		$kategori->nama = $request->nama;
     		$kategori->save();
     		return response()->json($kategori);
+    	}
+    }
+
+    public function getListKategori(Request $request)
+    {
+    	if($request->ajax()) {
+    		$kategoris = Kategori::where('nama', 'LIKE',  '%' .$request->term. '%')->get();
+    		$count = $kategoris->count();
+    		$kategori[] = array(
+				'id' => '0',
+				'text' => 'Kategori tidak ditemukan..'
+			);
+			if ($count > 0) {
+				foreach ($kategoris as $key => $value) {
+					$kategori[$key]['id'] = $value->id;
+					$kategori[$key]['text'] = $value->nama; 
+				}
+			}
+			return response()->json($kategori);
     	}
     }
 }

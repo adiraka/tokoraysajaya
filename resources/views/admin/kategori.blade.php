@@ -4,7 +4,7 @@
 
 	<button id="btn-add" data-target="" class="cyan btn waves-effect waves-light"><i class="mdi mdi-library-plus"></i>&nbsp;Tambah Kategori</button>
 
-	<table class="display dt-responsive nowrap" cellspacing="0" width="100%" id="tabel-buku">
+	<table class="display" cellspacing="0" width="100%" id="tabel-buku">
 		<thead>
 			<tr>
 				<th>Nama Kategori</th>
@@ -89,18 +89,14 @@
 					{ data: 'nama', name: 'nama' },
 					{
 						data: null,
-						sortAble: false,
+						sortable: false,
+						searchable: false,
 						render: function (o) { return '<button type="button" onclick="go_modal('+ o.id +')" class="green btn btn-detail go-modal"><i class="mdi mdi-pencil-box"></i></button>&nbsp;<button type="button" onclick="go_hapus('+ o.id +')" class="red btn btn-delete"><i class="mdi mdi-delete"></i></button>'; }
 					}
 				],
 			});
 
 			var url = "{!! url('kategoris') !!}";
-			
-			tabel.button( 0).action('click', function( e, dt, button, config ) {
-				console.log( 'Button '+this.text()+' activated' );
-				this.disable();
-			} );
 
 			$('#btn-add').click(function() {
 				$('#btn-save').val("add");
@@ -147,7 +143,6 @@
 					},
 					error: function (data){
 
-						$('#frmKtgr').trigger("reset");
 						Materialize.toast('Telah Terjadi Kesalahan.', 4000);
 
 					}

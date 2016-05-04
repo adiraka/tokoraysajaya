@@ -32,6 +32,11 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['auth'],
 	]);
 
+	Route::post('/bukus', [
+		'uses' => '\BookApp\Http\Controllers\BukuController@addDataBuku',
+		'middleware' => ['auth'],
+	]);
+
 	// Route Kategori
 
 	Route::get('/kategori', [
@@ -63,6 +68,12 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::put('/kategoris/{id}', [
 		'uses' => '\BookApp\Http\Controllers\KategoriController@editDataKategori',
+		'middleware' => ['auth'],
+	]);
+
+	Route::post('/kategori/cari', [
+		'uses' => '\BookApp\Http\Controllers\KategoriController@getListKategori',
+		'as' => 'carikategori',
 		'middleware' => ['auth'],
 	]);
 
