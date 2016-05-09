@@ -37,6 +37,21 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['auth'],
 	]);
 
+	Route::get('/bukus/{id}', [
+		'uses' => '\BookApp\Http\Controllers\BukuController@getDetailDataBuku',
+		'middleware' => ['auth'],
+	]);
+
+	Route::delete('/bukus/{id}', [
+		'uses' => '\BookApp\Http\Controllers\BukuController@deleteDataBuku',
+		'middleware' => ['auth'],
+	]);
+
+	Route::put('/bukus/{id}', [
+		'uses' => '\BookApp\Http\Controllers\BukuController@editDataBuku',
+		'middleware' => ['auth'],
+	]);
+
 	// Route Kategori
 
 	Route::get('/kategori', [

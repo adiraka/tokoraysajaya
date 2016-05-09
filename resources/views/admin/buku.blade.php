@@ -11,10 +11,8 @@
 				<th>Judul</th>
 				<th>Pengarang</th>
 				<th>Kategori</th>
-				<th>Tahun</th>
-				<th>ISBN</th>
-				<th>Harga</th>
 				<th>Stok</th>
+				<th>Aksi</th>
 			</tr>
 		</thead>
 	</table>
@@ -38,7 +36,7 @@
 					<div class="row">
 						<div class="input-field col m6 s12">
 							<select name="kategori_id" id="kategori_id" class="kategori validate">
-								<option value="" disabled selected>Pilih Kategori Buku</option>
+								<!-- <option value="" disabled selected>Pilih Kategori Buku</option> -->
 							</select>
 						</div>
 						<div class="input-field col m6 s12">
@@ -94,8 +92,55 @@
 @push('scripts')
 	
 	<script>
+		var url = "{!! url('bukus') !!}";
+
+		function go_modal(id) {
+			$.get(url + '/' + id, function(data){
+				$('#frmKtgr').trigger('reset');
+				$(".kategori").empty().trigger('change')
+				$('#id').val(data.id);
+				$('#kode_buku').val(data.kode_buku);
+				$('#judul').val(data.judul);
+				$('#pengarang').val(data.pengarang);
+				$('#tahun').val(data.tahun);
+				$('#isbn').val(data.isbn);
+				$('#harga').val(data.harga);
+				$('#stock').val(data.stock);
+				var kategori_id = 0;
+				kategori_id = data.kategori_id;
+				$.get("{!! url('kategoris') !!}" + '/' + kategori_id, function(data2){
+					$('.kategori').append('<option value="'+  data2.id +'" selected="selected">'+ data2.nama +'</option>');
+					$('.kategori').trigger('change');
+				});	
+				$('#btn-save').val("update");
+				$('#modalBuku').openModal();
+			});	
+		}
+
+		function go_hapus(id) {
+			var tabel = $('#tabel-buku').DataTable();
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+				}
+			})
+			$.ajax({
+				type: "DELETE",
+				url: url + '/' + id,
+				success: function() {
+					tabel.ajax.reload();
+					Materialize.toast('Data Berhasil Di Hapus.', 4000);
+				},
+				error: function() {
+					Materialize.toast('Telah Terjadi Kesalahan.', 4000);
+				}
+			});
+		}
+
 		$(function() {
 			$('.kategori').select2({
+				placeholder: 'Pilih Kategori Buku',
+				allowClear: true,
 				ajax: {
 					url: '{!! route('carikategori') !!}',
 					dataType: 'json',
@@ -105,7 +150,6 @@
 					},
 					delay: 250,
 					data: function(params) {
-						console.log("processing results");
 						return {
 							term: params.term
 						};
@@ -129,10 +173,13 @@
 					{ data: 'judul', name: 'judul' },
 					{ data: 'pengarang', name: 'pengarang' },
 					{ data: 'kategori_id', name: 'kategori_id' },
-					{ data: 'tahun', name: 'tahun' },
-					{ data: 'isbn', name: 'isbn' },
-					{ data: 'harga', name: 'harga' },
 					{ data: 'stock', name: 'stock' },
+					{
+						data: null,
+						sortable: false,
+						searchable: false,
+						render: function (o) { return '<button type="button" onclick="go_modal('+ o.id +')" class="green btn btn-detail go-modal"><i class="mdi mdi-pencil-box"></i></button>&nbsp;<button type="button" onclick="go_hapus('+ o.id +')" class="red btn btn-delete"><i class="mdi mdi-delete"></i></button>'; }
+					}
 				]
 			});
 
@@ -141,6 +188,7 @@
 			$('#btn-add').click( function(){
 				$('#btn-save').val("add");
 				$('#formBuku').trigger('reset');
+				$(".kategori").empty().trigger('change')
 				$('#modalBuku').openModal();
 			});
 
@@ -153,25 +201,6 @@
 
 				e.preventDefault();
 
-				// var file_size = ($("#foto"))[0].files[0].size;
-				// var file_name = ($("#foto"))[0].files[0].name;
-				// var file_tmp = ($("#foto"))[0].files[0];
-
-				// console.log(file_tmp);
-
-				// var data = {
-				// 	kode_buku: $('#kode_buku').val(),
-				// 	judul: $('#judul').val(),
-				// 	pengarang: $('#pengarang').val(),
-				// 	kategori_id: $('#kategori_id').val(),
-				// 	tahun: $('#tahun').val(),
-				// 	isbn: $('#isbn').val(),
-				// 	harga: $('#harga').val(),
-				// 	stock: $('#stock').val(),
-				// 	foto_n: file_name,
-				// 	foto_z: file_size
-				// }
-				
 				var formData = new FormData();
         		jQuery.each(jQuery('#foto')[0].files, function(i, file) {
 					formData.append('foto', file);

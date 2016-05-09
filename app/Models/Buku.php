@@ -12,7 +12,7 @@ class Buku extends Model
 
     public $timestamps = false;
 
-    public function buku()
+    public function kategori()
     {
     	return $this->belongsTo('BookApp\Models\Kategori');
     }

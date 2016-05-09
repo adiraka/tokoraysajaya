@@ -5,6 +5,7 @@ namespace BookApp\Http\Controllers;
 use Datatables;
 use BookApp\Models\Buku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 use BookApp\Http\Requests;
 
@@ -17,7 +18,19 @@ class BukuController extends Controller
 
     public function getDataBuku()
     {
-        return Datatables::of(Buku::query())->editColumn('id', 'ID: {{ $id }}')->make(true);
+    	$bukus = Buku::all();
+    	$lengkap = new Collection;
+    	foreach ($bukus as $key => $buku) {
+    		$lengkap->push([
+    			'id' => $buku->id,
+    			'kode_buku' => $buku->kode_buku,
+    			'judul' => $buku->judul,
+    			'pengarang' => $buku->pengarang,
+    			'kategori_id' => $buku->kategori->nama,
+    			'stock' => $buku->stock
+    		]);
+    	}
+        return Datatables::of($lengkap)->make(true);
     }
 
     public function addDataBuku(Request $request)
@@ -34,14 +47,13 @@ class BukuController extends Controller
     			'stock' => 'required',
     			'foto' => 'image',
     		]);
-    		$foto_ok = "";
+    		$fileName = "";
     		if ($request->foto)
     		{
     			$foto = $request->foto;
     			$extension = $foto->getClientOriginalExtension();
     			$fileName = date('Y-m-d') . '-' .rand(11111, 99999) . '.' . $extension;
     			$destinationPath = 'foto';
-    			$foto_ok =  'foto/' . $fileName;
     			$upload_success = $foto->move($destinationPath, $fileName);
     		}
     		$buku = new Buku;
@@ -53,9 +65,32 @@ class BukuController extends Controller
     		$buku -> isbn = $request -> isbn;
     		$buku -> harga = $request -> harga;
     		$buku -> stock = $request -> stock;
-    		$buku -> foto = $foto_ok;
+    		$buku -> foto = $fileName;
     		$buku -> save();
     		return response()->json($buku);
+    	}
+    }
+
+    public function getDetailDataBuku(Request $request, $id)
+    {
+    	if ($request->ajax()) {
+    		$kategori = Buku::find($id);
+    		return response()->json($kategori);
+    	}
+    }
+
+    public function deleteDataBuku(Request $request, $id)
+    {
+    	if ($request->ajax()) {
+    		$buku = Buku::destroy($id);
+    		return response()->json($buku);
+    	}
+    }
+
+    public function editDataBuku(Request $request, $id)
+    {
+    	if($request->ajax()) {
+    		$buku = Buku::find($id);
     	}
     }
 }

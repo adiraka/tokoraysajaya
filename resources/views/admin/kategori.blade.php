@@ -48,6 +48,7 @@
 
 		function go_modal(id) {
 			$.get(url + '/' + id, function(data){
+				console.log(data);
 				$('#frmKtgr').trigger('reset');
 				$('#id').val(data.id);
 				$('#nama').val(data.nama);
