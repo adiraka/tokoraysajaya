@@ -3,6 +3,7 @@
 namespace BookApp\Http\Controllers;
 
 use Datatables;
+use File;
 use BookApp\Models\Buku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -91,6 +92,27 @@ class BukuController extends Controller
     {
     	if($request->ajax()) {
     		$buku = Buku::find($id);
+    		if($request->foto) {
+    			if(File::exists('foto/'.$buku->foto)) {
+    				File::delete('foto/'.$buku->foto);
+    			}
+    			$foto = $request->foto;
+    			$extension = $foto->getClientOriginalExtension();
+    			$fileName = date('Y-m-d') . '-' .rand(11111, 99999) . '.' . $extension;
+    			$destinationPath = 'foto';
+    			$upload_success = $foto->move($destinationPath, $fileName);
+    			$buku->foto = $fileName;
+    		}
+    		$buku->kode_buku = $request->kode_buku;
+    		$buku->judul = $request->judul;
+    		$buku->pengarang = $request->pengarang;
+    		$buku->kategori_id = $request->kategori_id;
+    		$buku->tahun = $request->tahun;
+    		$buku->isbn = $request->isbn;
+    		$buku->harga = $request->harga;
+    		$buku->stock = $request->stock;
+    		$buku->save();
+    		return response()->json($buku);
     	}
     }
 }

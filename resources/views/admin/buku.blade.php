@@ -65,6 +65,10 @@
 						</div>
 					</div>
 					<div class="row">
+						<div class="img-preview col m8 offset-m2 s12">
+						</div>
+					</div>
+					<div class="row">
 						<div class="file-field input-field col m8 offset-m2 s12">
 							<div class="btn cyan">
 								<span>Foto</span>
@@ -106,6 +110,8 @@
 				$('#isbn').val(data.isbn);
 				$('#harga').val(data.harga);
 				$('#stock').val(data.stock);
+				$('.foto-preview').remove();
+				$('.img-preview').append('<img class="foto-preview responsive-img" alt="No Image Preview" src="foto/'+ data.foto +'">');
 				var kategori_id = 0;
 				kategori_id = data.kategori_id;
 				$.get("{!! url('kategoris') !!}" + '/' + kategori_id, function(data2){
@@ -188,6 +194,7 @@
 			$('#btn-add').click( function(){
 				$('#btn-save').val("add");
 				$('#formBuku').trigger('reset');
+				$('.foto-preview').remove();
 				$(".kategori").empty().trigger('change')
 				$('#modalBuku').openModal();
 			});
@@ -222,7 +229,7 @@
 				var my_url = url;
 
 				if(state == "update") {
-					type = "PUT";
+					// type = "PUT";
 					my_url += '/' + id;
 				}
 

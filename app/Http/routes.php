@@ -47,7 +47,7 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['auth'],
 	]);
 
-	Route::put('/bukus/{id}', [
+	Route::post('/bukus/{id}', [
 		'uses' => '\BookApp\Http\Controllers\BukuController@editDataBuku',
 		'middleware' => ['auth'],
 	]);
