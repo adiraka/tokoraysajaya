@@ -92,4 +92,38 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['auth'],
 	]);
 
+	//Route Pelanggan
+	
+	Route::get('/pelanggan', [
+		'uses' => '\BookApp\Http\Controllers\PelangganController@index',
+		'as' => 'pelanggan',
+		'middleware' => ['auth'],
+	]);
+
+	Route::get('/datapelanggan', [
+		'uses' => '\BookApp\Http\Controllers\PelangganController@getDataPelanggan',
+		'as' => 'datapelanggan',
+		'middleware' => ['auth'],
+	]);
+
+	Route::post('/pelanggans', [
+		'uses' => '\BookApp\Http\Controllers\PelangganController@addDataPelanggan',
+		'middleware' => ['auth'],
+	]);
+
+	Route::get('/pelanggans/{id}', [
+		'uses' => '\BookApp\Http\Controllers\PelangganController@getDetailDataPelanggan',
+		'middleware' => ['auth'],
+	]);
+
+	Route::delete('/pelanggans/{id}', [
+		'uses' => '\BookApp\Http\Controllers\PelangganController@deleteDataPelanggan',
+		'middleware' => ['auth'],
+	]);
+
+	Route::put('/pelanggans/{id}', [
+		'uses' => '\BookApp\Http\Controllers\PelangganController@editDataPelanggan',
+		'middleware' => ['auth'],
+	]);
+
 });

@@ -15,8 +15,6 @@ class BuatTabelPelanggan extends Migration
         Schema::create('tb_pelanggan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama', 50);
-            $table->string('tempat_lahir', 50);
-            $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['Pria', 'Wanita']);
             $table->text('alamat');
             $table->string('telepon', 12);
