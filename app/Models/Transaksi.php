@@ -8,7 +8,7 @@ class Transaksi extends Model
 {
     protected $table = 'tb_transaksi';
 
-    protected $fillable = ['tanggal', 'total', 'pelanggan_id'];
+    protected $fillable = ['tanggal', 'nama_pelanggan', 'telepon', 'total', 'created_at'];
 
     public $timestamps = false;
 }

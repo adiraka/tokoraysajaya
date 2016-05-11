@@ -140,4 +140,9 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['auth'],
 	]);
 
+	Route::post('/transaksi', [
+		'uses' => '\BookApp\Http\Controllers\TransaksiController@addDataTransaksi',
+		'middleware' => ['auth'],
+	]);
+
 });
