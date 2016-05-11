@@ -52,6 +52,12 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['auth'],
 	]);
 
+	Route::post('/buku/cari', [
+		'uses' => '\BookApp\Http\Controllers\BukuController@getListBuku',
+		'as' => 'caribuku',
+		'middleware' => ['auth'],
+	]);
+
 	// Route Kategori
 
 	Route::get('/kategori', [
@@ -123,6 +129,14 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::put('/pelanggans/{id}', [
 		'uses' => '\BookApp\Http\Controllers\PelangganController@editDataPelanggan',
+		'middleware' => ['auth'],
+	]);
+
+	//Route Transaksi 
+	
+	Route::get('/transaksi', [
+		'uses' => '\BookApp\Http\Controllers\TransaksiController@index',
+		'as' => 'transaksi',
 		'middleware' => ['auth'],
 	]);
 

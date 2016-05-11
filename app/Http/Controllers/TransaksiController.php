@@ -8,5 +8,8 @@ use BookApp\Http\Requests;
 
 class TransaksiController extends Controller
 {
-    //
+    public function index()
+    {
+        return view('admin.transaksi')->with('title', 'Transaksi');
+    }
 }

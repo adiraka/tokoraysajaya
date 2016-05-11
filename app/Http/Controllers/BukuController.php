@@ -115,4 +115,25 @@ class BukuController extends Controller
     		return response()->json($buku);
     	}
     }
+
+    public function getListBuku(Request $request)
+    {
+        if($request->ajax()) {
+            $bukus = Buku::where('judul', 'LIKE',  '%' .$request->term. '%')
+                            ->orwhere('kode_buku', 'LIKE',  '%' .$request->term. '%')
+                            ->get();
+            $count = $bukus->count();
+            $buku[] = array(
+                'id' => '0',
+                'text' => 'Kategori tidak ditemukan..'
+            );
+            if ($count > 0) {
+                foreach ($bukus as $key => $value) {
+                    $buku[$key]['id'] = $value->id;
+                    $buku[$key]['text'] = $value->kode_buku.' - '.$value->judul; 
+                }
+            }
+            return response()->json($buku);
+        }
+    }
 }

@@ -94,7 +94,9 @@
 @endsection
 
 @push('scripts')
-	
+
+	<script src="{{ URL::asset('js/datatables.js') }}"></script>
+    <script src="{{ URL::asset('js/select2.min.js') }}"></script>
 	<script>
 		var url = "{!! url('bukus') !!}";
 

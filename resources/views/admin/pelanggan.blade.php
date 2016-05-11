@@ -66,6 +66,8 @@
 @endsection
 
 @push('scripts')
+
+	<script src="{{ URL::asset('js/datatables.js') }}"></script>
 	<script>
 		var url = "{!! url('pelanggans') !!}";
 
