@@ -24,44 +24,43 @@
 			<div class="row">
 				<form  enctype="multipart/form-data" class="col s12" id="formBuku" name="formBuku" novalidate="">
 					<div class="row">
-						<div class="input-field col m6 s12">
-							<input placeholder="Kode Buku" id="kode_buku" type="text" class="validate">
-							<label for="kode_buku"></label>
+						<div class="col m6 s12">
+							<label for="kode_buku">Kode Buku</label>
+							<input id="kode_buku" type="text" class="validate">				
 						</div>
-						<div class="input-field col m6 s12">
-							<input placeholder="Judul Buku" id="judul" type="text" class="validate">
-							<label for="judul"></label>
+						<div class="col m6 s12">
+							<label for="judul">Judul Buku</label>
+							<input id="judul" type="text" class="validate">					
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col m6 s12">
 							<select name="kategori_id" id="kategori_id" class="kategori validate">
-								<!-- <option value="" disabled selected>Pilih Kategori Buku</option> -->
 							</select>
 						</div>
-						<div class="input-field col m6 s12">
-							<input placeholder="Pengarang" id="pengarang" type="text" class="validate">
-							<label for="pengarang"></label>
+						<div class="col m6 s12">
+							<label for="pengarang">Pengarang</label>
+							<input id="pengarang" type="text" class="validate">
 						</div>
 					</div>
 					<div class="row">
-						<div class="input-field col m6 s12">
-							<input placeholder="Tahun Terbit" id="tahun" type="text" class="validate">
-							<label for="tahun"></label>
+						<div class="col m6 s12">
+							<label for="tahun">Tahun Terbit</label>
+							<input id="tahun" type="text" class="validate">
 						</div>
-						<div class="input-field col m6 s12">
-							<input placeholder="ISBN" id="isbn" type="text" class="validate">
-							<label for="isbn"></label>
+						<div class="col m6 s12">
+							<label for="isbn">ISBN</label>
+							<input id="isbn" type="text" class="validate">
 						</div>
 					</div>
 					<div class="row">
-						<div class="input-field col m6 s12">
-							<input placeholder="Harga Jual" id="harga" type="text" class="validate">
-							<label for="harga"></label>
+						<div class="col m6 s12">
+							<label for="harga">Harga Satuan</label>
+							<input id="harga" type="number" class="validate">
 						</div>
-						<div class="input-field col m6 s12">
-							<input placeholder="Stok" id="stock" type="number" class="validate">
-							<label for="stock"></label>
+						<div class="col m6 s12">
+							<label for="stock">Stok</label>
+							<input id="stock" type="number" class="validate">
 						</div>
 					</div>
 					<div class="row">

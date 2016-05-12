@@ -16,4 +16,9 @@ class Buku extends Model
     {
     	return $this->belongsTo('BookApp\Models\Kategori');
     }
+
+    public function trans()
+    {
+    	return $this->hasMany('BookApp\Models\TransaksiDetail');
+    }
 }

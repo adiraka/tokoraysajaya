@@ -23,11 +23,11 @@
         <li class="bold"><a href="{{ route('kategori') }}" class="waves-effect waves-cyan"><i class="mdi mdi-tag-multiple"></i> Kategori</a>
         </li>
         <li class="bold"><a href="{{ route('buku') }}" class="waves-effect waves-cyan"><i class="mdi mdi-book-multiple-variant"></i> Data Buku</a>
-        </li>
+<!--         </li>
         <li class="bold"><a href="{{ route('pelanggan') }}" class="waves-effect waves-cyan"><i class="mdi mdi-account-multiple"></i> Data Pelanggan</a>
-        </li>
+        </li> -->
         <li class="bold"><a href="{{ route('transaksi') }}" class="waves-effect waves-cyan"><i class="mdi mdi-cart"></i> Transaksi</a>
-        <li class="bold"><a href="" class="waves-effect waves-cyan"><i class="mdi mdi-shopping"></i> Data Transaksi</a>
+        <li class="bold"><a href="{{ route('laporan') }}" class="waves-effect waves-cyan"><i class="mdi mdi-shopping"></i> Data Transaksi</a>
         </li>
         <li class="bold"><a href="{{ url('logout') }}" class="waves-effect waves-cyan"><i class="mdi mdi-logout-variant"></i> Logout</a>
         </li>

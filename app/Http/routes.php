@@ -145,4 +145,29 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['auth'],
 	]);
 
+	//Route Laporan
+	
+	Route::get('/laporan', [
+		'uses' => '\BookApp\Http\Controllers\LaporanController@index',
+		'as' => 'laporan',
+		'middleware' => ['auth'],
+	]);
+
+	Route::get('/datatransaksi', [
+		'uses' => '\BookApp\Http\Controllers\LaporanController@getDataTransaksi',
+		'as' => 'datatransaksi',
+		'middleware' => ['auth'],
+	]);
+
+	Route::get('/detailtransaksi/{id}', [
+		'uses' => '\BookApp\Http\Controllers\LaporanController@getDetailTransaksi',
+		'as' => 'detailtransaksi',
+		'middleware' => ['auth'],
+	]);
+
+	Route::delete('/transaksi/{id}', [
+		'uses' => '\BookApp\Http\Controllers\LaporanController@deleteTransaksi',
+		'middleware' => ['auth'],
+	]);
+
 });

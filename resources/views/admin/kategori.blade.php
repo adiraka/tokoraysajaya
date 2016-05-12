@@ -16,14 +16,13 @@
 
 	<div id="modalKategori" class="modal modal-fixed-footer">
 		<div class="modal-content">
-			<h5>Kategori</h5>
+			<h5>Kategori</h5><br>
 			<div class="row">
 				<form class="col s12" id="frmKtgr" name="frmKtgr" novalidate="">
 					<div class="row">
-						<div class="input-field col s12">
-							<i class="mdi mdi-tag-multiple prefix"></i>
-							<input placeholder="Nama Kategori" id="nama" type="text" class="validate">
-							<label for="nama"></label>
+						<div class="col s10">
+							<label for="nama">Nama Kategori</label>
+							<input id="nama" type="text" class="validate">
 						</div>
 					</div>
 				</form>

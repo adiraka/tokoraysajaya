@@ -24,15 +24,16 @@
 			<div class="row">
 				<form class="col s12" id="formPelanggan" name="formPelanggan" novalidate="">
 					<div class="row">
-						<div class="input-field col m8">
-							<input placeholder="Nama Lengkap" id="nama" type="text" class="validate">
-							<label for="nama"></label>
+						<div class="col m8">
+							<label for="nama">Nama Lengkap</label>
+							<input id="nama" type="text" class="validate">
+							
 						</div>
 					</div>
 					<div class="row">
-						<div class="input-field col m8">
+						<div class="col m8">
+							<label for="telepon">Telepon</label>
 							<input placeholder="Telepon/HP" id="telepon" type="text" class="validate">
-							<label for="telepon"></label>
 						</div>	
 					</div>
 					<div class="row">
@@ -44,10 +45,11 @@
 							</select>
 						</div>
 					</div>
+					<br><br>
 					<div class="row">
-						<div class="input-field col m8">
-							<textarea id="alamat" class="materialize-textarea">Alamat</textarea>
-          					<label for="alamat"></label>
+						<div class="col m8">
+							<label for="alamat">Alamat</label>
+							<textarea id="alamat" class="materialize-textarea"></textarea>
 						</div>
 						<br><br><br><br><br><br><br><br><br>
 					</div>

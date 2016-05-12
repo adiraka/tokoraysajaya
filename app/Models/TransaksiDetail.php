@@ -11,4 +11,9 @@ class TransaksiDetail extends Model
     protected $fillable = ['transaksi_id', 'buku_id', 'jumlah', 'subtotal'];
 
     public $timestamps = false;
+
+    public function buku()
+    {
+    	return $this->belongsTo('BookApp\Models\Buku');
+    }
 }

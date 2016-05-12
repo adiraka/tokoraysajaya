@@ -13,7 +13,7 @@ class BuatTabelBuku extends Migration
             $table->string('pengarang', 50);
             $table->integer('kategori_id');
             $table->string('tahun', 4);
-            $table->string('isbn', 10);
+            $table->string('isbn', 25);
             $table->integer('harga');
             $table->integer('stock');
             $table->string('foto', 255);           
