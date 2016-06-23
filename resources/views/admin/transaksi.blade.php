@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div id="print">			
 	<form accept-charset="utf-8">
 		<strong>Data Konsumen :</strong><br><br>
 		<div class="row">
@@ -68,12 +68,13 @@
 	</form>
 
 	<meta name="_token" content="{!! csrf_token() !!}" />
-
+</div>
 @endsection
 
 @push('scripts')
 	
 	<script src="{{ URL::asset('js/select2.min.js') }}"></script>
+	<script src="{{ URL::asset('js/jquery.PrintArea.js') }}"></script>
 	<script>
 
 		function hapus_row() {
@@ -212,6 +213,7 @@
 					// contentType: false,
 					success: function(data){
 						Materialize.toast('Data Berhasil Di Tambahkan.', 4000);
+						$('#print').printArea();
 						location.reload();
 					},
 					error: function (data){
